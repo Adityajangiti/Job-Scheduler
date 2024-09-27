@@ -1,0 +1,236 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs List</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Jobs List</h1>
+    <table class="table-light">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Job Name</th>
+                <th scope="col">Database Type</th>
+                <th scope="col">Server</th>
+                <th scope="col">Database</th>
+                <th scope="col">Username</th>
+                <th scope="col">Queries</th>
+                <th scope="col">Output File</th>
+                <th scope="col">Email IDs</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+                <tr>
+                    <td>{{ job.job_name }}</td>
+                    <td>{{ job.db_type }}</td>
+                    <td>{{ job.server }}</td>
+                    <td>{{ job.database_name }}</td>
+                    <td>{{ job.username }}</td>
+                    <td>{{ job.queries }}</td>
+                    <td>{{ job.output_file }}</td>
+                    <td>{{ job.email_ids }}</td>
+                    <td>{{ job.frequency }} minutes</td>
+                    <td>{{ job.start_date }}</td>
+                    <td>{{ job.end_date }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_job', job_id=job.id) }}">Edit Job</a>
+                        <a href="{{ url_for('delete_job', job_id=job.id) }}">Delete Job</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Add Job</a>
+</body>
+</html>
+
+ -->
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs List</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .add-job-link {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            font-size: 18px;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .icon-button:hover {
+            color: #555;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/schedule">Schedule Job</a></li>
+            <li><a href="/jobs">View Jobs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1>Jobs List</h1>
+    <table class="table-light">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Job Name</th>
+                <th scope="col">Database Type</th>
+                <th scope="col">Database</th>
+                <th scope="col">Username</th>
+                <th scope="col">Queries</th>
+                <th scope="col">Output File</th>
+                <th scope="col">Email IDs</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+                <tr>
+                    <td>{{ job.job_name }}</td>
+                    <td>{{ job.db_type }}</td>
+                    <td>{{ job.database_name }}</td>
+                    <td>{{ job.username }}</td>
+                    <td>{{ job.queries[:30] }}...</td>
+                    <td>{{ job.output_file }}</td>
+                    <td>{{ job.email_ids }}</td>
+                    <td>{{ job.frequency }} minutes</td>
+                    <td>{{ job.start_date }}</td>
+                    <td>{{ job.end_date }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_job', job_id=job.id) }}" class="icon-button"><i class="fas fa-pen"></i></a>
+                        <a href="{{ url_for('delete_job', job_id=job.id) }}" class="icon-button"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/" class="add-job-link">Add Job</a>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Mindsprinters. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+ 

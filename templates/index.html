@@ -1,0 +1,185 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Query Executor</title>
+    <link rel="stylesheet" href="static\style.css" />
+</head>
+<body>
+    <h1>Database Query Executor</h1>
+    <form action="/execute" method="post">
+        <label for="job_name">Job Name</label>
+        <input type="text" id="job_name" name="job_name"><br><br>
+        <label for="db_type">Database Type:</label>
+        <select id="db_type" name="db_type">
+            <option value="mssql">MSSQL</option>
+            <option value="postgres">PostgreSQL</option>
+            <option value="mysql">MySQL</option>
+        </select><br><br>
+
+        <label for="server">Server:</label>
+        <input type="text" id="server" name="server"><br><br>
+
+        <label for="database">Database:</label>
+        <input type="text" id="database" name="database"><br><br>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <label for="queries">Queries (separated by ';'):</label>
+        <textarea id="queries" name="queries"></textarea><br><br>
+
+        <label for="output_file">Output File Name:</label>
+        <input type="text" id="output_file" name="output_file"><br><br>
+
+        <label for="email_ids">Email IDs (separated by ','):</label>
+        <input type="text" id="email_ids" name="email_ids"><br><br>
+
+        <label for="frequency">Frequency (in minutes):</label>
+        <input type="number" id="frequency" name="frequency" required><br><br>
+
+        <label for="start_date">Start Date (DD-MM-YYYY HH:MM):</label>
+        <input type="text" id="start_date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date (DD-MM-YYYY HH:MM):</label>
+        <input type="text" id="end_date" name="end_date" required><br><br>
+
+        <input type="submit" value="Execute">
+    </form>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Scheduler</title>
+    <link rel="stylesheet" href="static\style.css" />
+</head>
+<body>
+    <h1>Schedule a New Job</h1>
+    <form action="/execute" method="post">
+        <label for="job_name">Job Name:</label>
+        <input type="text" id="job_name" name="job_name" required><br><br>
+
+        <label for="db_type">Database Type:</label>
+        <select id="db_type" name="db_type" required>
+            <option value="mssql">MSSQL</option>
+            <option value="postgres">Postgres</option>
+            <option value="mysql">MySQL</option>
+        </select><br><br>
+
+        <label for="server">Server:</label>
+        <input type="text" id="server" name="server" required><br><br>
+
+        <label for="database">Database:</label>
+        <input type="text" id="database" name="database" required><br><br>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="queries">Queries (separated by ';'):</label>
+        <textarea id="queries" name="queries" required></textarea><br><br>
+
+        <label for="output_file">Output File Name:</label>
+        <input type="text" id="output_file" name="output_file" required><br><br>
+
+        <label for="email_ids">Email IDs (separated by ','):</label>
+        <input type="text" id="email_ids" name="email_ids" required><br><br>
+
+        <label for="frequency">Frequency (in minutes):</label>
+        <input type="number" id="frequency" name="frequency" required><br><br>
+
+        <label for="start_date">Start Date (DD-MM-YYYY HH:MM:SS):</label>
+        <input type="text" id="start_date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date (DD-MM-YYYY HH:MM:SS):</label>
+        <input type="text" id="end_date" name="end_date" required><br><br>
+
+        <input type="submit" value="Execute">
+    </form>
+    <br>
+    <a href="/jobs">View Scheduled Jobs</a>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Scheduler</title>
+    <link rel="stylesheet" href="static\style.css" />
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/schedule">Schedule Job</a></li>
+            <li><a href="/jobs">View Jobs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1>Schedule a New Job</h1>
+    <form action="/execute" method="post">
+        <label for="job_name">Job Name:</label>
+        <input type="text" id="job_name" name="job_name" required><br><br>
+
+        <label for="db_type">Database Type:</label>
+        <select id="db_type" name="db_type" required>
+            <option value="mssql">MSSQL</option>
+            <option value="postgres">Postgres</option>
+            <option value="mysql">MySQL</option>
+        </select><br><br>
+
+        <label for="server">Server:</label>
+        <input type="text" id="server" name="server" required><br><br>
+
+        <label for="database">Database:</label>
+        <input type="text" id="database" name="database" required><br><br>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="queries">Queries (separated by ';'):</label>
+        <textarea id="queries" name="queries" required></textarea><br><br>
+
+        <label for="output_file">Output File Name:</label>
+        <input type="text" id="output_file" name="output_file" required><br><br>
+
+        <label for="email_ids">Email IDs (separated by ','):</label>
+        <input type="text" id="email_ids" name="email_ids" required><br><br>
+
+        <label for="frequency">Frequency (in minutes):</label>
+        <input type="number" id="frequency" name="frequency" required><br><br>
+
+        <label for="start_date">Start Date (DD-MM-YYYY HH:MM:SS):</label>
+        <input type="text" id="start_date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date (DD-MM-YYYY HH:MM:SS):</label>
+        <input type="text" id="end_date" name="end_date" required><br><br>
+
+        <input type="submit" value="Execute">
+    </form>
+    <br>
+    <a href="/jobs">View Scheduled Jobs</a>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Mindsprinters. All rights reserved.</p>
+    </footer>
+</body>
+</html>

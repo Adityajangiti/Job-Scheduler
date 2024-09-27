@@ -1,0 +1,215 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job</title>
+    <link rel="stylesheet" href="static\style.css">
+</head>
+<body>
+    <h1>Edit Job</h1>
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ job.name }}" required>
+        
+        <label for="command">Command:</label>
+        <input type="text" id="command" name="command" value="{{ job.command }}" required>
+        
+        <label for="cron">Cron Schedule:</label>
+        <input type="text" id="cron" name="cron" value="{{ job.cron_schedule }}" required>
+        
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" value="{{ job.status }}" required>
+        
+        <label for="end_date">End Date:</label>
+        <input type="datetime-local" id="end_date" name="end_date" value="{{ job.end_date }}">
+        
+        <button type="submit">Save</button>
+    </form>
+    <a href="{{ url_for('list_jobs') }}">Back to Jobs</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dbd3d1;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            font-size: 18px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/schedule">Schedule Job</a></li>
+            <li><a href="/jobs">View Jobs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1>Edit Job</h1>
+    <form action="{{ url_for('edit_job', job_id=job.id) }}" method="post">
+        <label for="job_name">Job Name:</label>
+        <input type="text" id="job_name" name="job_name" value="{{ job.job_name }}" required><br>
+
+        <label for="db_type">Database Type:</label>
+        <input type="text" id="db_type" name="db_type" value="{{ job.db_type }}" required><br>
+
+        <label for="server">Server:</label>
+        <input type="text" id="server" name="server" value="{{ job.server }}" required><br>
+
+        <label for="database">Database:</label>
+        <input type="text" id="database" name="database" value="{{ job.database }}" required><br>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ job.username }}" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" value="{{ job.password }}" required><br>
+
+        <label for="queries">Queries:</label>
+        <textarea id="queries" name="queries" required>{{ job.queries }}</textarea><br>
+
+        <label for="output_file">Output File:</label>
+        <input type="text" id="output_file" name="output_file" value="{{ job.output_file }}" required><br>
+
+        <label for="email_ids">Email IDs:</label>
+        <input type="text" id="email_ids" name="email_ids" value="{{ job.email_ids }}" required><br>
+
+        <label for="frequency">Frequency (minutes):</label>
+        <input type="number" id="frequency" name="frequency" value="{{ job.frequency }}" required><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="text" id="start_date" name="start_date" value="{{ job.start_date.strftime('%d-%m-%Y %H:%M:%S') }}" required><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="text" id="end_date" name="end_date" value="{{ job.end_date.strftime('%d-%m-%Y %H:%M:%S') }}" required><br>
+
+        
+            
+        <button type="submit" name="execute_now">Save and Execute Now</button>
+        <button type="submit">Save</button>
+        
+        
+    </form>
+    <a href="/jobs" class="back-link">Back to Jobs List</a>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Mindsprinters. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
